@@ -13,12 +13,12 @@
       
       <div class="inputs">
         <input type="text" required>
-        <label>Ingresa tu primer nombre y tu primer apellido</label>  
+        <label>Nombre y apellido</label>  
       </div>
 
       <div class="inputs">
         <input type="password" required>
-        <label>Ingresa tu contraseña</label>  
+        <label>Contraseña</label>  
       </div>
 
       <div class="button">
