@@ -24,28 +24,28 @@ function screenTwo(){
     <div class="container">
       
       <div v-show="one">
-      <div class="ContainText">
-        <h1 class="text">HOLA AMIGUITO!!</h1>
-        <h1 class="text">Antes de comenzar esta emocionante aventura debes iniciar sesión</h1>
-      </div>
+        <div class="ContainText">
+          <h1 class="text">HOLA AMIGUITO!!</h1>
+          <h1 class="text">Antes de comenzar esta emocionante aventura debes iniciar sesión</h1>
+        </div>
       
-      <div class="inputs">
-        <input type="text" required>
-        <label>Nombre y apellido</label>  
-      </div>
+        <div class="inputs">
+          <input type="text" required>
+          <label>Nombre y apellido</label>  
+        </div>
 
-      <div class="inputs">
-        <input type="password" required>
-        <label>Contraseña</label>  
-      </div>
+        <div class="inputs">
+          <input type="password" required>
+          <label>Contraseña</label>  
+        </div>
 
-      <div class="button" @click="screenOne">
-        <button>INICIAR</button>
-      </div>
+        <div class="button" @click="screenOne">
+          <button>INICIAR</button>
+        </div>
 
-      <div class="button">
-        <button href="">REGISTRATE</button>
-      </div>
+        <div class="button">
+          <button href="">REGISTRATE</button>
+        </div>
       </div>
 
       <div class="containerTwo" v-show="two">
