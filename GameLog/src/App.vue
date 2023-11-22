@@ -39,7 +39,7 @@ function screenThree(){
       
         <div class="inputs">
           <input type="text" required>
-          <label>Nombre y apellido</label>  
+          <label>Nombre de usuario</label>  
         </div>
 
         <div class="inputs">
