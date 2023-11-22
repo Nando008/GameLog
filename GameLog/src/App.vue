@@ -4,17 +4,25 @@ import { ref } from 'vue';
 
 let one = ref(true)
 let two = ref(false)
+let three = ref(false)
 
 function screenOne() {
-  one.value = false
   two.value = true
+  one.value = false
+  three.value = false
 }
 
 function screenTwo(){
   one.value = true
   two.value = false
+  three.value = false
 }
 
+function screenThree(){
+  three.value = true
+  one.value = false
+  two.value = false
+}
 
 
 </script>
@@ -44,7 +52,7 @@ function screenTwo(){
         </div>
 
         <div class="button">
-          <button href="">REGISTRATE</button>
+          <button href="" @click="screenThree">REGISTRATE</button>
         </div>
       </div>
 
@@ -61,11 +69,85 @@ function screenTwo(){
 
         <h1 class="textExplicacion">4. Sensor tactil de disparos con corto alcnaze para derribar naves de la segunda fila</h1>
 
-        <div class="button" @click="screenTwo" >
-          <button href="">REGRESAR</button>
+        <div class="button">
+          <button href="">INICIAR EL JUEGO</button>
         </div>
       </div>
 
+      <div>
+        <div class="containerThree" v-show="three">
+          
+          <div class="bloque">
+            <h1 class="bloqueText">HOLA AMIGUITO!!</h1>
+            <h1 class="bloqueText">INGRESA LOS SIGUIENTES DATOS</h1>
+            
+            <div class="inputsbloque">
+              <input type="text" required>
+              <label>Primer Nombre</label>  
+            </div>
+
+            <div class="inputsbloque">
+              <input type="text" required>
+              <label>Segundo Nombre</label>  
+            </div>
+            
+            <div class="inputsbloque">
+              <input type="text" required>
+              <label>Primer Apellido</label>  
+            </div>
+
+            <div class="inputsbloque">
+              <input type="text" required>
+              <label>Segundo Apellido</label>  
+            </div>
+
+            <div class="inputsbloque">
+              <input type="text" required>
+              <label>Genero</label>   
+            </div>
+
+            <div class="inputsEdad">
+              <label>Fecha de nacimientos</label>
+              <div>
+                <input type="number" required placeholder="Día">
+              </div>
+
+              <div>
+                <input type="number" required placeholder="Mes">
+              </div>
+
+              <div>
+                <input type="number" required placeholder="Año">
+              </div>
+            </div>
+          </div>
+
+          <div class="bloque">
+            <div class="bloquein">
+              <h1 class="bloqueText">Crea un nombre de usuario</h1>
+              
+              <div class="inputsbloque">
+                <input type="text" required>
+                <label>Nombre de usuario</label>   
+              </div>
+
+              <h1 class="bloqueText">Crea una contraseña</h1>
+              <div class="inputsbloque">
+                <input type="text" required>
+                <label>contraseña</label>   
+              </div>
+
+              <div class="buttonRegistro" @click="screenOne" >
+                <button href="">REGISTARSE</button>
+              </div>
+
+              <div class="buttonRegistro" @click="screenTwo" >
+                <button href="">REGRESAR</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </template>
@@ -152,7 +234,6 @@ div > .text{
   padding: 5px 0px 5px 0px;
   color: #000000;
   font-family: Concert One;
-  
 }
 
 button {
@@ -195,7 +276,122 @@ button:hover {
   font-size: 20px;
 }
 
+.containerThree { 
+  display: flex;
+  justify-content: space-around;
+  margin: 30px 10px 0px 10px;
+}
 
- 
+.bloque {
+  background-color: rgba(118, 64, 64, 0.716);
+  width: 400px;
+  height: 494px;
+  border-radius: 10px;
+}
+
+.bloqueText {
+  justify-content: center;
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.515);
+  border-radius: 10px;
+  padding: 5px 0px 5px 0px;
+  color: rgba(0, 0, 0, 0.853);
+  font-family: Concert One;
+  font-size: 20px;
+  margin: 10px 5px 0px 5px;
+}
+
+.inputsbloque {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  margin: 20px auto;
+}
+.inputsbloque input{
+  width: 300px;
+  height: 40px;
+  border-radius: 14px;
+  font-size: 18px;
+  padding: 0 15px;
+  border: 2px solid #000000;
+  background-color: rgba(255, 255, 255, 0.515);;
+  color: #000000;
+  outline: none;
+  font-family: Concert One;
+}
+
+.inputsbloque label{
+  position: absolute;
+  transform: translateY(-50%);
+  top: 0;
+  left: 25%px ;
+  font-size: 14px;
+  padding: 2px 8px 2px 8px;
+  background-color: #ffffffda;
+  border-radius: 4px;
+  color: #000000;
+  font-family: Concert One;
+}
+
+.inputsEdad {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  margin: 20px auto;
+}
+
+.inputsEdad input{
+  width: 50px;
+  height: 30px;
+  border-radius: 14px;
+  font-size: 18px;
+  padding: 0 15px;
+  border: 2px solid #000000;
+  background-color: rgba(255, 255, 255, 0.515);;
+  color: #000000;
+  outline: none;
+  font-family: Concert One;
+  margin: 15px 2px 0px 2px;
+}
+
+.inputsEdad label{
+  position: absolute;
+  transform: translateY(-40%);
+  top: 0;
+  left: 25%px ;
+  font-size: 14px;
+  padding: 2px 8px 2px 8px;
+  background-color: #ffffffda;
+  border-radius: 4px;
+  color: #000000;
+  font-family: Concert One;
+}
+
+.bloquein{
+  width: auto;
+  height: 494px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.buttonRegistro{
+  display: flex;
+  justify-content: center;
+  font-size: 20px;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.515);
+  margin: 10px auto 0px auto;
+  padding: 5px 5px 5px 5px;
+  color: #000000;
+  font-family: Concert One;
+}
+
+.buttonRegistro:hover {
+  background-color: rgb(112, 2, 2);
+  transition: 1s;
+  color: #fff;
+}
 
 </style>
