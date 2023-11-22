@@ -1,27 +1,53 @@
 <script setup>
 import { ref } from 'vue';
 
+let usuary = ''
+let USUARY = ref('')
+let validarUsuary = ref('')
+let name = ref('')
+
+let contraseña = ''
+let CONTRASEÑA = ref ('')
+let validarContraseña = ref('')
 
 let one = ref(true)
 let two = ref(false)
 let three = ref(false)
+let validacion = ref(false)
+let bloqueVal = ref(false)
 
 function screenOne() {
-  two.value = true
-  one.value = false
-  three.value = false
+  USUARY.value = usuary
+  CONTRASEÑA.value = contraseña
+  bloqueVal.value = true
 }
 
 function screenTwo(){
-  one.value = true
-  two.value = false
-  three.value = false
+  if(validarUsuary.value == '' && validarContraseña.value == ''){
+    validacion.value = true
+  }else{
+    if(validarUsuary.value == USUARY.value && validarContraseña.value == CONTRASEÑA.value){
+    one.value = false
+    two.value = true
+    three.value = false
+    }else{
+      validacion.value = true
+    }
+  }
+
 }
 
 function screenThree(){
+  three.value = false
+  one.value = true
+  two.value = false
+}
+
+function screenFour(){
   three.value = true
   one.value = false
   two.value = false
+  validacion.value = false
 }
 
 
@@ -38,21 +64,25 @@ function screenThree(){
         </div>
       
         <div class="inputs">
-          <input type="text" required>
+          <input type="text" required v-model="validarUsuary">
           <label>Nombre de usuario</label>  
         </div>
 
         <div class="inputs">
-          <input type="password" required>
+          <input type="password" required v-model="validarContraseña">
           <label>Contraseña</label>  
         </div>
+        
+        <div v-show="validacion">
+          <h2 class="textValidacion">Usuario o Contraseña invalido</h2>
+        </div>
 
-        <div class="button" @click="screenOne">
+        <div class="button" @click="screenTwo">
           <button>INICIAR</button>
         </div>
 
         <div class="button">
-          <button href="" @click="screenThree">REGISTRATE</button>
+          <button href="" @click="screenFour">REGISTRATE</button>
         </div>
       </div>
 
@@ -82,7 +112,7 @@ function screenThree(){
             <h1 class="bloqueText">INGRESA LOS SIGUIENTES DATOS</h1>
             
             <div class="inputsbloque">
-              <input type="text" required>
+              <input type="text" required v-model="name">
               <label>Primer Nombre</label>  
             </div>
 
@@ -127,23 +157,28 @@ function screenThree(){
               <h1 class="bloqueText">Crea un nombre de usuario</h1>
               
               <div class="inputsbloque">
-                <input type="text" required>
+                <input type="text" required v-model="usuary">
                 <label>Nombre de usuario</label>   
               </div>
 
               <h1 class="bloqueText">Crea una contraseña</h1>
               <div class="inputsbloque">
-                <input type="text" required>
+                <input type="text" required v-model="contraseña">
                 <label>contraseña</label>   
               </div>
 
-              <div class="buttonRegistro" @click="screenOne" >
+              <div v-show="bloqueVal">
+                <h1 class="bloqueTextVal">{{ name }} te has registro correctamente</h1>
+              </div>
+
+              <div class="buttonRegistro" @click="screenOne">
                 <button href="">REGISTARSE</button>
               </div>
 
-              <div class="buttonRegistro" @click="screenTwo" >
+              <div class="buttonRegistro" @click="screenThree" >
                 <button href="">REGRESAR</button>
               </div>
+
             </div>
           </div>
         </div>
@@ -163,6 +198,29 @@ function screenThree(){
   padding-top: 55px;
   padding-bottom: 40px;
   
+}
+
+.textValidacion {
+  text-align: center;
+  font-family: Concert One;
+  background-color: #000000;
+  color: red;
+  padding: 5px;
+  width: 400px;
+  border-radius: 10px;
+  margin: -30px auto 3px auto;
+}
+
+.bloqueTextVal {
+  text-align: center;
+  font-family: Concert One;
+  background-color: rgba(255, 255, 255, 0.515);
+  color: rgb(0, 0, 0);
+  padding: 5px;
+  width: 380px;
+  border-radius: 10px;
+  margin: 0px auto 10px auto;
+  font-size: 20px;
 }
 
 .container{
@@ -249,11 +307,13 @@ button {
   background-color: rgb(112, 2, 2);
   transition: 1s;
   color: #fff;
+  cursor: pointer;
 }
 
 button:hover {
   color: #fff;
   transition: 0.30s;
+  cursor: pointer;
 }
 
 .container > .containerTwo > .control{
